@@ -18,8 +18,8 @@ services:
       dockerfile: rocm.dockerfile
       network: host
     devices:
-      - /dev/kfd:/dev/kfd
-      - /dev/dri:/dev/dri
+      - /dev/kfd
+      - /dev/dri
     ports:
       - 8188:8188/tcp
     volumes:
