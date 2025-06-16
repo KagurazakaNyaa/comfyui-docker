@@ -20,6 +20,8 @@ services:
     devices:
       - /dev/kfd
       - /dev/dri
+    security_opt:
+      - seccomp:unconfined
     ports:
       - 8188:8188/tcp
     volumes:

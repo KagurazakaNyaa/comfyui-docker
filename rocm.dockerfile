@@ -1,4 +1,9 @@
-FROM rocm/pytorch:rocm6.4.1_ubuntu24.04_py3.12_pytorch_release_2.6.0
+FROM rocm/dev-ubuntu-24.04:6.3.4-complete
+
+RUN apt-get update &&\
+    apt-get install -y ffmpeg libsm6 libxext6 libjpeg-dev python3-dev python3-pip &&\
+    apt-get clean &&\
+    pip3 install wheel setuptools
 
 COPY VERSION /VERSION
 
@@ -7,7 +12,8 @@ RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymo
 
 WORKDIR /opt/comfyui
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt &&\
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.3/
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
