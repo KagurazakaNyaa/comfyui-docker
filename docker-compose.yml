@@ -1,0 +1,36 @@
+services:
+  cpu:
+    image: kagurazakanyaa/comfyui:cpu
+    build:
+      context: .
+      dockerfile: cpu.dockerfile
+      network: host
+    ports:
+      - 8188:8188/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+
+  rocm:
+    image: kagurazakanyaa/comfyui:rocm
+    build:
+      context: .
+      dockerfile: rocm.dockerfile
+      network: host
+    ports:
+      - 8188:8188/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+
+  cuda:
+    image: kagurazakanyaa/comfyui:cuda
+    build:
+      context: .
+      dockerfile: cuda.dockerfile
+      network: host
+    ports:
+      - 8188:8188/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
