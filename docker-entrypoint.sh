@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -d /opt/comfyui/venv ]]; then
+    # shellcheck source=/dev/null
+    source /opt/comfyui/venv/bin/activate
+fi
+
 if [[ ! -d /data/custom_nodes ]]; then
     cp -r custom_nodes /data/custom_nodes
 fi
