@@ -12,9 +12,8 @@ RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymo
 WORKDIR /opt/comfyui
 
 RUN python3 -m venv venv &&\
-    source venv/bin/activate &&\
-    pip3 install -r requirements.txt &&\
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.3/
+    venv/bin/pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.3/ &&\
+    venv/bin/pip3 install -r requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
