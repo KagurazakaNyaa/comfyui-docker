@@ -36,7 +36,7 @@ jobs:
           images: kagurazakanyaa/comfyui,ghcr.io/kagurazakanyaa/comfyui
           flavor: |
             latest=auto
-            prefix=${{ matrix.runtimes }},onlatest=true
+            prefix=${{ matrix.runtimes }}-,onlatest=true
 
       - name: Build and push
         id: docker_build
