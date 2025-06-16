@@ -1,5 +1,9 @@
 FROM pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
 
+RUN apt-get update &&\
+    apt-get install -y ffmpeg libsm6 libxext6 git &&\
+    apt-get clean
+
 COPY VERSION /VERSION
 
 RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymous/ComfyUI.git /opt/comfyui &&\
