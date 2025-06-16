@@ -13,6 +13,19 @@ jobs:
         runtimes: ["cpu", "rocm", "cuda"]
 
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: easimon/maximize-build-space@v10
+        with:
+          build-mount-path: /var/lib/docker/
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
+          remove-codeql: "true"
+          remove-docker-images: "true"
+
+      - name: Restart docker
+        run: sudo service docker restart
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
