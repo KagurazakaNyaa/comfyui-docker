@@ -17,6 +17,9 @@ services:
       context: .
       dockerfile: rocm.dockerfile
       network: host
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
     ports:
       - 8188:8188/tcp
     volumes:
@@ -29,6 +32,13 @@ services:
       context: .
       dockerfile: cuda.dockerfile
       network: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              driver: nvidia
+              device_ids: ["0"]
     ports:
       - 8188:8188/tcp
     volumes:
