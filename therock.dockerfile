@@ -12,7 +12,7 @@ RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymo
 WORKDIR /opt/comfyui
 
 RUN python3 -m venv venv &&\
-    venv/bin/pip3 --index-url https://rocm.nightlies.amd.com/v2/gfx110X-all/ --pre torch torchaudio torchvision &&\
+    venv/bin/pip3 install --index-url https://rocm.nightlies.amd.com/v2/gfx110X-all/ --pre torch torchaudio torchvision &&\
     venv/bin/pip3 install -r requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
