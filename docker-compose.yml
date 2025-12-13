@@ -28,6 +28,23 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data:/data
 
+  therock:
+    image: kagurazakanyaa/comfyui:therock
+    build:
+      context: .
+      dockerfile: therock.dockerfile
+      network: host
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - 8188:8188/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+
   cuda:
     image: kagurazakanyaa/comfyui:cuda
     build:
@@ -38,9 +55,9 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities: ["gpu"]
+            - capabilities: [ "gpu" ]
               driver: nvidia
-              device_ids: ["0"]
+              device_ids: [ "0" ]
     ports:
       - 8188:8188/tcp
     volumes:
