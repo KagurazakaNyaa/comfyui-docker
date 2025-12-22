@@ -8,16 +8,16 @@ RUN apt-get update &&\
 
 COPY VERSION /VERSION
 
-RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymous/ComfyUI.git /opt/comfyui &&\
-    git clone https://github.com/ltdrdata/ComfyUI-Manager.git /opt/comfyui/custom_nodes/ComfyUI-Manager
+RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymous/ComfyUI.git /opt/comfyui
 
 WORKDIR /opt/comfyui
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt &&\
+    pip3 install -r manager_requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
-ENV EXTRA_ARGS=--cpu
+ENV EXTRA_ARGS="--cpu --enable-manager"
 
 VOLUME [ "/data" ]
 
