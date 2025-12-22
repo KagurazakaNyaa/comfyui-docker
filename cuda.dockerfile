@@ -14,7 +14,7 @@ RUN pip3 install -r requirements.txt -r manager_requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
-ENV EXTRA_ARGS="--lowvram --enable-manager"
+ENV EXTRA_ARGS=--lowvram
 
 VOLUME [ "/data" ]
 

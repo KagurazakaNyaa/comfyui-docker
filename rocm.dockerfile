@@ -16,7 +16,7 @@ RUN python3 -m venv venv &&\
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
-ENV EXTRA_ARGS="--lowvram --enable-manager"
+ENV EXTRA_ARGS=--lowvram
 
 VOLUME [ "/data" ]
 

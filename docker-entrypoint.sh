@@ -49,7 +49,7 @@ for deps in "${requires[@]}"; do
 done
 
 if [ $# -eq 0 ]; then
-    python main.py --listen "0.0.0.0" --port 8188 "${EXTRA_ARGS}"
+    python main.py --listen "0.0.0.0" --port 8188 --enable-manager "${EXTRA_ARGS[@]}"
 else
     exec "$@"
 fi
