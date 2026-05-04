@@ -1,6 +1,6 @@
 #!/bin/bash
 
-onlineversion=$(curl --silent -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/comfyanonymous/ComfyUI/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+onlineversion=$(curl --silent -L -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/comfyanonymous/ComfyUI/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 repoversion=$(cat VERSION)
 
 echo "repoversion:$repoversion onlineversion:$onlineversion"
