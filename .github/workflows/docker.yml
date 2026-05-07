@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        runtimes: ["cpu", "rocm", "cuda", "therock"]
+        runtimes: [ "cpu", "rocm", "cu130", "cu128", "cu126", "therock" ]
 
     steps:
       - name: Free Disk Space (Ubuntu)
@@ -51,11 +51,23 @@ jobs:
             latest=auto
             prefix=${{ matrix.runtimes }}-,onlatest=true
 
+      - name: Docker CUDA meta
+        id: cuda_meta
+        if: matrix.runtimes == 'cu130'
+        uses: docker/metadata-action@v6
+        with:
+          images: kagurazakanyaa/comfyui,ghcr.io/kagurazakanyaa/comfyui
+          flavor: |
+            latest=auto
+            prefix=cuda-,onlatest=true
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v7
         with:
           push: true
           file: ${{ matrix.runtimes }}.dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ${{ steps.cuda_meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
