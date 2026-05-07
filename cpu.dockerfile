@@ -2,9 +2,8 @@ FROM python:3.12
 
 # Install dependencies
 RUN apt-get update &&\
-    apt-get install -y ffmpeg libsm6 libxext6 &&\
-    apt-get clean &&\
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    apt-get install -y ffmpeg libsm6 libxext6 git &&\
+    apt-get clean
 
 COPY VERSION /VERSION
 
@@ -12,7 +11,9 @@ RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymo
 
 WORKDIR /opt/comfyui
 
-RUN pip3 install -r requirements.txt -r manager_requirements.txt
+RUN python3 -m venv venv &&\
+    venv/bin/pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu &&\
+    venv/bin/pip3 install -r requirements.txt -r manager_requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 

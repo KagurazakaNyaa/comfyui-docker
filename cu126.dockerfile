@@ -10,7 +10,8 @@ RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymo
 
 WORKDIR /opt/comfyui
 
-RUN pip3 install -r requirements.txt -r manager_requirements.txt
+RUN python3 -m venv --system-site-packages venv &&\
+    venv/bin/pip3 install -r requirements.txt -r manager_requirements.txt
 
 COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /docker-entrypoint.sh
 
