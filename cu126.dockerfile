@@ -6,7 +6,7 @@ RUN apt-get update &&\
 
 COPY VERSION /VERSION
 
-RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/comfyanonymous/ComfyUI.git /opt/comfyui
+RUN git clone --depth 1 --branch $(cat /VERSION) https://github.com/Comfy-Org/ComfyUI.git /opt/comfyui
 
 WORKDIR /opt/comfyui
 
