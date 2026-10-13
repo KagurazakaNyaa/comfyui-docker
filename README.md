@@ -28,11 +28,14 @@ Available runtime tags:
 | Runtime | Tag prefix | Base |
 | --- | --- | --- |
 | CPU | `cpu` | Python CPU image with PyTorch CPU wheels |
-| CUDA 13.0 | `cu130` | `pytorch/pytorch:2.11.0-cuda13.0-cudnn9-runtime` |
+| CUDA 13.0 | `cu130` | `pytorch/pytorch:2.14.1-cuda13.0-cudnn9-runtime` |
 | CUDA 12.8 | `cu128` | `pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime` |
-| CUDA 12.6 | `cu126` | `pytorch/pytorch:2.11.0-cuda12.6-cudnn9-runtime` |
-| ROCm | `rocm` | `rocm/dev-ubuntu-24.04:7.2.3-complete` |
+| CUDA 12.6 | `cu126` | `pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime` |
+| ROCm | `rocm` | `rocm/dev-ubuntu-24.04:7.2.4-complete` |
 | TheRock | `therock` | ROCm/TheRock nightly wheels |
+
+The CUDA 12.8 image remains on PyTorch 2.11.0 because the PyTorch registry does not
+publish a corresponding `2.14.1-cuda12.8` runtime image.
 
 For tag pushes, each runtime gets its own tags, such as `cu130-latest`, `cu128-latest`, and `rocm-latest`.
 The generic CUDA alias `cuda-latest` points to the CUDA 13.0 build (`cu130`).
