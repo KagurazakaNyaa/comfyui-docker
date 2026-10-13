@@ -32,10 +32,15 @@ Available runtime tags:
 | CUDA 12.8 | `cu128` | `pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime` |
 | CUDA 12.6 | `cu126` | `pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime` |
 | ROCm | `rocm` | `rocm/dev-ubuntu-24.04:7.2.4-complete` |
-| TheRock | `therock` | ROCm/TheRock nightly wheels |
+| TheRock | `therock` | `ubuntu:24.04` with TheRock ROCm/PyTorch nightly wheels |
 
 The CUDA 12.8 image remains on PyTorch 2.11.0 because the PyTorch registry does not
 publish a corresponding `2.14.1-cuda12.8` runtime image.
+
+TheRock uses an Ubuntu system image and installs its ROCm user-space packages from
+the nightly aggregate index. `device-all` is the default; pass
+`--build-arg THEROCK_DEVICE_EXTRAS=device-gfx90c` when a smaller single-GPU image
+is preferred.
 
 For tag pushes, each runtime gets its own tags, such as `cu130-latest`, `cu128-latest`, and `rocm-latest`.
 The generic CUDA alias `cuda-latest` points to the CUDA 13.0 build (`cu130`).
