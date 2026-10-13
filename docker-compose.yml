@@ -64,11 +64,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data:/data
 
-  cu128:
-    image: kagurazakanyaa/comfyui:cu128
+  cu132:
+    image: kagurazakanyaa/comfyui:cu132
     build:
       context: .
-      dockerfile: cu128.dockerfile
+      dockerfile: cu132.dockerfile
       network: host
     deploy:
       resources:

@@ -9,7 +9,7 @@
 ![Image Size (CPU)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cpu-latest?label=cpu-latest)
 ![Image Size (CUDA)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cuda-latest?label=cuda-latest)
 ![Image Size (CUDA 13.0)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cu130-latest?label=cu130-latest)
-![Image Size (CUDA 12.8)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cu128-latest?label=cu128-latest)
+![Image Size (CUDA 13.2)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cu132-latest?label=cu132-latest)
 ![Image Size (CUDA 12.6)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/cu126-latest?label=cu126-latest)
 ![Image Size (ROCm)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/rocm-latest?label=rocm-latest)
 ![Image Size (TheRock)](https://img.shields.io/docker/image-size/kagurazakanyaa/comfyui/therock-latest?label=therock-latest)
@@ -29,20 +29,17 @@ Available runtime tags:
 | --- | --- | --- |
 | CPU | `cpu` | Python CPU image with PyTorch CPU wheels |
 | CUDA 13.0 | `cu130` | `pytorch/pytorch:2.14.1-cuda13.0-cudnn9-runtime` |
-| CUDA 12.8 | `cu128` | `pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime` |
+| CUDA 13.2 | `cu132` | `pytorch/pytorch:2.14.1-cuda13.2-cudnn9-runtime` |
 | CUDA 12.6 | `cu126` | `pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime` |
 | ROCm | `rocm` | `rocm/dev-ubuntu-24.04:7.2.4-complete` |
 | TheRock | `therock` | `ubuntu:24.04` with TheRock ROCm/PyTorch nightly wheels |
-
-The CUDA 12.8 image remains on PyTorch 2.11.0 because the PyTorch registry does not
-publish a corresponding `2.14.1-cuda12.8` runtime image.
 
 TheRock uses an Ubuntu system image and installs its ROCm user-space packages from
 the nightly aggregate index. `device-all` is the default; pass
 `--build-arg THEROCK_DEVICE_EXTRAS=device-gfx90c` when a smaller single-GPU image
 is preferred.
 
-For tag pushes, each runtime gets its own tags, such as `cu130-latest`, `cu128-latest`, and `rocm-latest`.
+For tag pushes, each runtime gets its own tags, such as `cu130-latest`, `cu132-latest`, and `rocm-latest`.
 The generic CUDA alias `cuda-latest` points to the CUDA 13.0 build (`cu130`).
 
 ## Docker Compose
@@ -53,4 +50,4 @@ Start one runtime at a time because all services expose ComfyUI on host port `81
 docker compose up cu130
 ```
 
-Other available services are `cpu`, `rocm`, `therock`, `cu128`, and `cu126`.
+Other available services are `cpu`, `rocm`, `therock`, `cu130`, `cu132`, and `cu126`.

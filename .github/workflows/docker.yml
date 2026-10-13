@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        runtimes: [ "cpu", "rocm", "cu130", "cu128", "cu126", "therock" ]
+        runtimes: [ "cpu", "rocm", "cu130", "cu132", "cu126", "therock" ]
 
     steps:
       - name: Free Disk Space (Ubuntu)
