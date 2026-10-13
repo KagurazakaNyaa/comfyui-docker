@@ -43,6 +43,7 @@ ln -sf /data/output -T output
 ln -sf /data/models -T models
 ln -sf /data/user -T user
 
+shopt -s nullglob
 requires=(/data/custom_nodes/*/requirements.txt)
 for deps in "${requires[@]}"; do
     pip3 install -r "$deps"
