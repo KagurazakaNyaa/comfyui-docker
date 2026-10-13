@@ -53,7 +53,7 @@ jobs:
 
       - name: Docker CUDA meta
         id: cuda_meta
-        if: matrix.runtimes == 'cu130'
+        if: matrix.runtimes == 'cu132'
         uses: docker/metadata-action@v6
         with:
           images: kagurazakanyaa/comfyui,ghcr.io/kagurazakanyaa/comfyui

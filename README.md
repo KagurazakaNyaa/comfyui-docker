@@ -40,7 +40,7 @@ the nightly aggregate index. `device-all` is the default; pass
 is preferred.
 
 For tag pushes, each runtime gets its own tags, such as `cu130-latest`, `cu132-latest`, and `rocm-latest`.
-The generic CUDA alias `cuda-latest` points to the CUDA 13.0 build (`cu130`).
+The generic CUDA alias `cuda-latest` points to the CUDA 13.2 build (`cu132`).
 
 ## Docker Compose
 
