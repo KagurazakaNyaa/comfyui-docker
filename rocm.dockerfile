@@ -1,4 +1,4 @@
-FROM rocm/dev-ubuntu-24.04:7.2.3-complete
+FROM rocm/dev-ubuntu-24.04:7.2.4-complete
 
 RUN apt-get update &&\
     apt-get install -y ffmpeg libsm6 libxext6 libjpeg-dev python3-dev python3-full git &&\
