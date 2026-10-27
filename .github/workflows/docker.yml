@@ -14,17 +14,22 @@ jobs:
 
     steps:
       - name: Free Disk Space (Ubuntu)
-        uses: easimon/maximize-build-space@v10
+        id: cleanup
+        uses: justinthelaw/maximize-github-runner-space@v0.12.4
         with:
-          build-mount-path: /var/lib/docker/
-          remove-dotnet: "true"
+          cleanup-profile: custom
           remove-android: "true"
+          remove-dotnet: "true"
           remove-haskell: "true"
           remove-codeql: "true"
           remove-docker-images: "true"
 
-      - name: Restart docker
-        run: sudo service docker restart
+      - name: Verify disk cleanup
+        env:
+          FAILED_OPERATIONS: ${{ steps.cleanup.outputs.failed-operations }}
+        run: |
+          test "$FAILED_OPERATIONS" = "0"
+          df -h /
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
